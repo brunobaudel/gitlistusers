@@ -20,8 +20,7 @@ object Versions {
 object Koin {
     const val koinCore = "io.insert-koin:koin-core:${Versions.koinVersion}"
     const val koinAndroid = "io.insert-koin:koin-android:${Versions.koinAndroidVersion}"
-    const val koinAndroidCompat =
-        "io.insert-koin:koin-android-compat:${Versions.koinAndroidVersion}"
+    const val koinAndroidCompat = "io.insert-koin:koin-android-compat:${Versions.koinAndroidVersion}"
     const val koinAndroidxWorkmanager =
         "io.insert-koin:koin-androidx-workmanager:${Versions.koinAndroidVersion}"
 }
