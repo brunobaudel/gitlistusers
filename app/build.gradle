@@ -8,11 +8,11 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.mobsky.gitlistusers"
-        minSdk 24
-        targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        applicationId DefaultsConfig.applicationId
+        minSdk DefaultsConfig.minSdk
+        targetSdk DefaultsConfig.targetSdk
+        versionCode DefaultsConfig.versionCode
+        versionName DefaultsConfig.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
