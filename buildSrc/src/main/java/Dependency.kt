@@ -1,10 +1,9 @@
 object DefaultsConfig {
-    const val applicationId = "com.mobsky.gitlistusers" // can't change once defined
+    const val applicationId = "com.mobsky.gitlistusers"
     const val minSdk = 24
     const val targetSdk = 33
-    const val versionCode = 1       // must be increased by every playstore upload
-    const val versionName =
-        "1.0" // you should increase too. Suggested approach (https://semver.org/)
+    const val versionCode = 1
+    const val versionName = "1.0"
 }
 
 object Versions {
@@ -14,14 +13,16 @@ object Versions {
     const val gsonVersion = "2.8.9"
     const val loggingInterceptorVersion = "4.2.0"
     const val okhttpVersion = "4.2.0"
+    const val coroutinesCoreVersion = "1.6.4"
+    const val coroutinesTestingVersion = "1.6.4"
 }
 
 object Koin {
-    const val koin_core = "io.insert-koin:koin-core:${Versions.koinVersion}"
-    const val koin_android = "io.insert-koin:koin-android:${Versions.koinAndroidVersion}"
-    const val koin_android_compat =
+    const val koinCore = "io.insert-koin:koin-core:${Versions.koinVersion}"
+    const val koinAndroid = "io.insert-koin:koin-android:${Versions.koinAndroidVersion}"
+    const val koinAndroidCompat =
         "io.insert-koin:koin-android-compat:${Versions.koinAndroidVersion}"
-    const val koin_androidx_workmanager =
+    const val koinAndroidxWorkmanager =
         "io.insert-koin:koin-androidx-workmanager:${Versions.koinAndroidVersion}"
 }
 
@@ -36,10 +37,15 @@ object Gson {
 }
 
 object Interceptor {
-    const val logging_interceptor =
+    const val loggingInterceptor =
         "com.squareup.okhttp3:logging-interceptor:${Versions.loggingInterceptorVersion}"
 }
 
 object Okhttp {
-    const val okhttp_core = "com.squareup.okhttp3:okhttp:${Versions.okhttpVersion}"
+    const val okhttpCore = "com.squareup.okhttp3:okhttp:${Versions.okhttpVersion}"
+}
+
+object kotlinxCoroutines {
+    const val  coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutinesCoreVersion}"
+    const val  coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutinesTestingVersion}"
 }
