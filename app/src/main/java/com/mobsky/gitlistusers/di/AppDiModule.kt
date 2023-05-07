@@ -7,7 +7,7 @@ import org.koin.dsl.module
 
 
 val startNetworkParameters = StartNetworkParameters(
-    baseUrl = "",
+    baseUrl = "https://api.github.com ",
     isDebug = true
 )
 
