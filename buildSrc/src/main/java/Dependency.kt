@@ -4,6 +4,7 @@ object DefaultsConfig {
     const val targetSdk = 33
     const val versionCode = 1
     const val versionName = "1.0"
+    const val kotlinCompilerExtensionVersion = "1.4.2"
 }
 
 object Versions {
@@ -15,6 +16,7 @@ object Versions {
     const val okhttpVersion = "4.2.0"
     const val coroutinesCoreVersion = "1.6.4"
     const val coroutinesTestingVersion = "1.6.4"
+    const val composeBomVersion = "2023.01.00"
 }
 
 object Koin {
@@ -47,4 +49,18 @@ object Okhttp {
 object kotlinxCoroutines {
     const val  coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutinesCoreVersion}"
     const val  coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutinesTestingVersion}"
+}
+
+object Compose{
+    const val bom = "androidx.compose:compose-bom:${Versions.composeBomVersion}"
+    const val material3 = "androidx.compose.material3:material3"
+    const val foundation = "androidx.compose.foundation:foundation"
+    const val ui = "androidx.compose.ui:ui"
+    const val preview = "androidx.compose.ui:ui-tooling-preview"
+    const val tooling = "androidx.compose.ui:ui-tooling"
+    const val iconsCore = "androidx.compose.material:material-icons-core"
+    const val windowSizeClass = "androidx.compose.material3:material3-window-size-class"
+    const val activityCompose = "androidx.activity:activity-compose:1.6.1"
+    const val viewmodelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1"
+    const val livedataCompose = "androidx.compose.runtime:runtime-livedata"
 }
