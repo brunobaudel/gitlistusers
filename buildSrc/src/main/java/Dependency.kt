@@ -5,6 +5,7 @@ object DefaultsConfig {
     const val versionCode = 1
     const val versionName = "1.0"
     const val kotlinCompilerExtensionVersion = "1.4.2"
+    const val jvmTargetVersion = "17"
 }
 
 object Versions {
@@ -17,12 +18,16 @@ object Versions {
     const val coroutinesCoreVersion = "1.6.4"
     const val coroutinesTestingVersion = "1.6.4"
     const val composeBomVersion = "2023.01.00"
+    const val composeNavigationVersion = "2.5.3"
+    const val composeViewModelVersion = "2.5.1"
+    const val composeActivityVersion = "1.6.1"
 }
 
 object Koin {
     const val koinCore = "io.insert-koin:koin-core:${Versions.koinVersion}"
     const val koinAndroid = "io.insert-koin:koin-android:${Versions.koinAndroidVersion}"
-    const val koinAndroidCompat = "io.insert-koin:koin-android-compat:${Versions.koinAndroidVersion}"
+    const val koinAndroidCompat =
+        "io.insert-koin:koin-android-compat:${Versions.koinAndroidVersion}"
     const val koinAndroidxWorkmanager =
         "io.insert-koin:koin-androidx-workmanager:${Versions.koinAndroidVersion}"
 }
@@ -47,11 +52,13 @@ object Okhttp {
 }
 
 object kotlinxCoroutines {
-    const val  coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutinesCoreVersion}"
-    const val  coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutinesTestingVersion}"
+    const val coroutinesCore =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutinesCoreVersion}"
+    const val coroutinesTest =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutinesTestingVersion}"
 }
 
-object Compose{
+object Compose {
     const val bom = "androidx.compose:compose-bom:${Versions.composeBomVersion}"
     const val material3 = "androidx.compose.material3:material3"
     const val foundation = "androidx.compose.foundation:foundation"
@@ -60,7 +67,9 @@ object Compose{
     const val tooling = "androidx.compose.ui:ui-tooling"
     const val iconsCore = "androidx.compose.material:material-icons-core"
     const val windowSizeClass = "androidx.compose.material3:material3-window-size-class"
-    const val activityCompose = "androidx.activity:activity-compose:1.6.1"
-    const val viewmodelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1"
+    const val activityCompose = "androidx.activity:activity-compose:${Versions.composeActivityVersion}"
+    const val viewModelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.composeViewModelVersion}"
     const val livedataCompose = "androidx.compose.runtime:runtime-livedata"
+    const val navigationCompose =
+        "androidx.navigation:navigation-compose:${Versions.composeNavigationVersion}"
 }

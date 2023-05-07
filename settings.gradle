@@ -15,3 +15,5 @@ dependencyResolutionManagement {
 rootProject.name = "GitListUsers"
 include ':app'
 include ':network'
+include ':home'
+include ':navigation'
