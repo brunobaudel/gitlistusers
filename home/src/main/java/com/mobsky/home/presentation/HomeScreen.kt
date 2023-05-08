@@ -1,4 +1,4 @@
-package com.mobsky.home.ui
+package com.mobsky.home.presentation
 
 import android.annotation.SuppressLint
 import android.content.Context

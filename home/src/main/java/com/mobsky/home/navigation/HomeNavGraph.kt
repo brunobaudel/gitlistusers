@@ -4,7 +4,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
-import com.mobsky.home.ui.HomeScreen
+import com.mobsky.home.presentation.HomeScreen
 import com.mobsky.navigation.AppGraph
 
 fun NavGraphBuilder.homeNavGraph(navController: NavController) {

@@ -53,6 +53,14 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
+    implementation(Koin.koinAndroid)
+    implementation(Koin.koinAndroidCompat)
+    implementation(Koin.koinAndroidxWorkmanager)
+
+    implementation(Retrofit.retrofitCore)
+
+    implementation(Gson.gsonCore)
+
     //Compose
     val composeBom = platform(Compose.bom)
     implementation(composeBom)
