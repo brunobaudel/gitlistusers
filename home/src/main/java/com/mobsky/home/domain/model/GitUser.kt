@@ -1,4 +1,5 @@
 package com.mobsky.home.domain.model
 
-class GitUser {
-}
+data class GitUser(
+    val name: String = ""
+)

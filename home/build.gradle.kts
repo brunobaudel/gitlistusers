@@ -44,6 +44,7 @@ android {
 dependencies {
 
     implementation(project(mapOf("path" to ":navigation")))
+    implementation(project(mapOf("path" to ":network")))
 
     implementation("androidx.core:core-ktx:1.10.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -73,12 +74,12 @@ dependencies {
     debugImplementation(Compose.tooling)
     implementation(Compose.iconsCore)
     implementation(Compose.windowSizeClass)
-    // Optional - Integration with activities
+    // Integration with activities
     implementation(Compose.activityCompose)
-    // Optional - Integration with ViewModels
+    // Integration with ViewModels
     implementation(Compose.viewModelCompose)
-    // Optional - Integration with LiveData
+    // Integration with LiveData
     implementation(Compose.livedataCompose)
-    // Optional - Navigation
+    // Navigation
     implementation(Compose.navigationCompose)
 }

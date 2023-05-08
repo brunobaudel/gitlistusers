@@ -113,7 +113,7 @@ data class UserRepositoryResponse(
     @SerializedName("permissions")
     val permissions: Permissions,
     @SerializedName("private")
-    val `private`: Boolean,
+    val isPrivate: Boolean,
     @SerializedName("pulls_url")
     val pullsUrl: String,
     @SerializedName("pushed_at")

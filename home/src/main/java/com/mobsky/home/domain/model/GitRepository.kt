@@ -1,4 +1,7 @@
 package com.mobsky.home.domain.model
 
-class GitRepository {
-}
+data class GitRepository(
+    val name: String = "",
+    val isPrivate: Boolean = false,
+    val createdAt: String = ""
+)
