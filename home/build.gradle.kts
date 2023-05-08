@@ -57,6 +57,7 @@ dependencies {
     implementation(Koin.koinAndroid)
     implementation(Koin.koinAndroidCompat)
     implementation(Koin.koinAndroidxWorkmanager)
+    implementation(Koin.koinAndroidxCompose)
 
     implementation(Retrofit.retrofitCore)
 
@@ -82,4 +83,6 @@ dependencies {
     implementation(Compose.livedataCompose)
     // Navigation
     implementation(Compose.navigationCompose)
+
+
 }

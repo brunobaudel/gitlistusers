@@ -1,6 +1,7 @@
 package com.mobsky.gitlistusers.di
 
 import com.mobsky.home.data.network.api.GitHubApi
+import com.mobsky.home.di.homeModules
 import com.mobsky.network.StartNetworkParameters
 import com.mobsky.network.startNetwork
 import org.koin.core.module.Module
@@ -10,7 +11,7 @@ import retrofit2.Retrofit
 
 
 val startNetworkParameters = StartNetworkParameters(
-    baseUrl = "https://api.github.com ",
+    baseUrl = "https://api.github.com",
     isDebug = true
 )
 
@@ -28,5 +29,5 @@ fun getAppModules(): List<Module> =
     listOf(
         startNetwork,
         appDiModule
-    )
+    ).plus(homeModules)
 

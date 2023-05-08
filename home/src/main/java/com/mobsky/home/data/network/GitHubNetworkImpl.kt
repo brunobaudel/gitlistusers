@@ -1,6 +1,5 @@
 package com.mobsky.home.data.network
 
-import com.google.gson.Gson
 import com.mobsky.home.data.network.api.GitHubApi
 import com.mobsky.home.data.network.api.model.user.UsersResponse
 import com.mobsky.home.data.network.api.model.user_repository.UserRepositoryResponse
@@ -9,7 +8,7 @@ import com.mobsky.network.util.safeApiCall
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
-class GitHubShowProjectsNetworkImpl(
+class GitHubNetworkImpl(
     private val gitHubApi: GitHubApi,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : GitHubNetwork {

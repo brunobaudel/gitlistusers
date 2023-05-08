@@ -9,11 +9,11 @@ import com.mobsky.home.domain.model.GitUser
 import com.mobsky.network.util.getSuccessResultWrapper
 import com.mobsky.network.util.result
 
-class GitHubShowRepositoryImpl(
+class GitHubRepositoryImpl(
     private val gitHubNetwork: GitHubNetwork
 ) : GitHubRepository {
 
-    override suspend fun getUsers(): List<GitUser> {
+    override suspend fun getUsers(): Users {
         return result {
             gitHubNetwork
                 .getUsers()
@@ -31,7 +31,7 @@ class GitHubShowRepositoryImpl(
         }
     }
 
-    override suspend fun getUserRepositories(userName: String): List<GitRepository> {
+    override suspend fun getUserRepositories(userName: String): UserRepositories {
         return result {
             gitHubNetwork
                 .getUserRepositories(userName)
@@ -39,5 +39,4 @@ class GitHubShowRepositoryImpl(
                 .toGitRepositories()
         }
     }
-
 }

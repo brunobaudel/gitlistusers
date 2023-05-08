@@ -11,6 +11,7 @@ object DefaultsConfig {
 object Versions {
     const val koinVersion = "3.2.2"
     const val koinAndroidVersion = "3.3.0"
+    const val koinAndroidComposeVersion = "3.4.4"
     const val retrofitVersion = "2.9.0"
     const val gsonVersion = "2.8.9"
     const val loggingInterceptorVersion = "4.2.0"
@@ -30,6 +31,8 @@ object Koin {
         "io.insert-koin:koin-android-compat:${Versions.koinAndroidVersion}"
     const val koinAndroidxWorkmanager =
         "io.insert-koin:koin-androidx-workmanager:${Versions.koinAndroidVersion}"
+    const val koinAndroidxCompose =
+        "io.insert-koin:koin-androidx-compose::${Versions.koinAndroidComposeVersion}"
 }
 
 object Retrofit {
