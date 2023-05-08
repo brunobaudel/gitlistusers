@@ -32,7 +32,7 @@ object Koin {
     const val koinAndroidxWorkmanager =
         "io.insert-koin:koin-androidx-workmanager:${Versions.koinAndroidVersion}"
     const val koinAndroidxCompose =
-        "io.insert-koin:koin-androidx-compose::${Versions.koinAndroidComposeVersion}"
+        "io.insert-koin:koin-androidx-compose:${Versions.koinAndroidComposeVersion}"
 }
 
 object Retrofit {

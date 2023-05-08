@@ -9,7 +9,6 @@ android {
 
     defaultConfig {
         minSdk = DefaultsConfig.minSdk
-        targetSdk = DefaultsConfig.targetSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -22,6 +21,9 @@ android {
                 "proguard-rules.pro"
             )
         }
+
+        debug {
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -30,6 +32,7 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 
     composeOptions {
@@ -84,5 +87,5 @@ dependencies {
     // Navigation
     implementation(Compose.navigationCompose)
 
-
+    implementation("com.github.bumptech.glide:compose:1.0.0-alpha.1")
 }

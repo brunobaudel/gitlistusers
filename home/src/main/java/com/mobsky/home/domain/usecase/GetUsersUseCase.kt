@@ -5,8 +5,8 @@ import com.mobsky.home.data.repository.Users
 
 class GetUsersUseCase(
     private val gitHubRepository: GitHubRepository
-) : UseCase<Users, Void>() {
+) : UseCase<Users, Unit>() {
 
-    override suspend fun run(params: Void): Users = gitHubRepository.getUsers()
+    override suspend fun run(params: Unit): Users = gitHubRepository.getUsers()
 
 }

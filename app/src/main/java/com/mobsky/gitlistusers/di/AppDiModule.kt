@@ -1,5 +1,6 @@
 package com.mobsky.gitlistusers.di
 
+import com.mobsky.gitlistusers.BuildConfig
 import com.mobsky.home.data.network.api.GitHubApi
 import com.mobsky.home.di.homeModules
 import com.mobsky.network.StartNetworkParameters
@@ -9,10 +10,9 @@ import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module
 import retrofit2.Retrofit
 
-
 val startNetworkParameters = StartNetworkParameters(
-    baseUrl = "https://api.github.com",
-    isDebug = true
+    baseUrl = BuildConfig.BASE_URL,
+    isDebug = BuildConfig.DEBUG
 )
 
 val appDiModule = module {

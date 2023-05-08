@@ -9,7 +9,9 @@ import com.mobsky.home.domain.model.GitUser
 fun UsersResponse?.toGitUsers(): GitUser =
     this?.let {
         GitUser(
-            name = login
+            id = id.toString(),
+            name = login,
+            avatarUrl = avatarUrl
         )
     } ?: GitUser()
 
