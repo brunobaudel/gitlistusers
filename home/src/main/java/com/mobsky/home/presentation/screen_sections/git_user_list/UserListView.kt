@@ -85,7 +85,7 @@ fun UsersListItem(gitUser: GitUser, onItemClick: ((gitUser: GitUser) -> Unit)? =
                 modifier = Modifier
                     .padding(top = 20.dp, bottom = 20.dp, end = 32.dp),
                 text = gitUser.name,
-                style = MaterialTheme.typography.labelSmall,
+                style = MaterialTheme.typography.headlineSmall
             )
         }
     }

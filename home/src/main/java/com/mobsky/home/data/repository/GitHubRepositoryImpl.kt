@@ -15,10 +15,10 @@ class GitHubRepositoryImpl(
 
     override suspend fun getUsers(): Users {
         return result {
-            gitHubNetwork
-                .getUsers()
-                .getSuccessResultWrapper()
-                .toGitUsers()
+                gitHubNetwork
+                    .getUsers()
+                    .getSuccessResultWrapper()
+                    .toGitUsers()
         }
     }
 

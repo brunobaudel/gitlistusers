@@ -5,59 +5,59 @@ import com.google.gson.annotations.SerializedName
 
 data class UserRepositoryResponse(
     @SerializedName("archive_url")
-    val archiveUrl: String,
+    val archiveUrl: String??,
     @SerializedName("archived")
     val archived: Boolean,
     @SerializedName("assignees_url")
-    val assigneesUrl: String,
+    val assigneesUrl: String?,
     @SerializedName("blobs_url")
-    val blobsUrl: String,
+    val blobsUrl: String?,
     @SerializedName("branches_url")
-    val branchesUrl: String,
+    val branchesUrl: String?,
     @SerializedName("clone_url")
-    val cloneUrl: String,
+    val cloneUrl: String?,
     @SerializedName("collaborators_url")
-    val collaboratorsUrl: String,
+    val collaboratorsUrl: String?,
     @SerializedName("comments_url")
-    val commentsUrl: String,
+    val commentsUrl: String?,
     @SerializedName("commits_url")
-    val commitsUrl: String,
+    val commitsUrl: String?,
     @SerializedName("compare_url")
-    val compareUrl: String,
+    val compareUrl: String?,
     @SerializedName("contents_url")
-    val contentsUrl: String,
+    val contentsUrl: String?,
     @SerializedName("contributors_url")
-    val contributorsUrl: String,
+    val contributorsUrl: String?,
     @SerializedName("created_at")
-    val createdAt: String,
+    val createdAt: String?,
     @SerializedName("default_branch")
-    val defaultBranch: String,
+    val defaultBranch: String?,
     @SerializedName("deployments_url")
-    val deploymentsUrl: String,
+    val deploymentsUrl: String?,
     @SerializedName("description")
-    val description: String,
+    val description: String?,
     @SerializedName("disabled")
     val disabled: Boolean,
     @SerializedName("downloads_url")
-    val downloadsUrl: String,
+    val downloadsUrl: String?,
     @SerializedName("events_url")
-    val eventsUrl: String,
+    val eventsUrl: String?,
     @SerializedName("fork")
     val fork: Boolean,
     @SerializedName("forks_count")
     val forksCount: Int,
     @SerializedName("forks_url")
-    val forksUrl: String,
+    val forksUrl: String?,
     @SerializedName("full_name")
-    val fullName: String,
+    val fullName: String?,
     @SerializedName("git_commits_url")
-    val gitCommitsUrl: String,
+    val gitCommitsUrl: String?,
     @SerializedName("git_refs_url")
-    val gitRefsUrl: String,
+    val gitRefsUrl: String?,
     @SerializedName("git_tags_url")
-    val gitTagsUrl: String,
+    val gitTagsUrl: String?,
     @SerializedName("git_url")
-    val gitUrl: String,
+    val gitUrl: String?,
     @SerializedName("has_discussions")
     val hasDiscussions: Boolean,
     @SerializedName("has_downloads")
@@ -71,41 +71,41 @@ data class UserRepositoryResponse(
     @SerializedName("has_wiki")
     val hasWiki: Boolean,
     @SerializedName("homepage")
-    val homepage: String,
+    val homepage: String?,
     @SerializedName("hooks_url")
-    val hooksUrl: String,
+    val hooksUrl: String?,
     @SerializedName("html_url")
-    val htmlUrl: String,
+    val htmlUrl: String?,
     @SerializedName("id")
     val id: Int,
     @SerializedName("is_template")
     val isTemplate: Boolean,
     @SerializedName("issue_comment_url")
-    val issueCommentUrl: String,
+    val issueCommentUrl: String?,
     @SerializedName("issue_events_url")
-    val issueEventsUrl: String,
+    val issueEventsUrl: String?,
     @SerializedName("issues_url")
-    val issuesUrl: String,
+    val issuesUrl: String?,
     @SerializedName("keys_url")
-    val keysUrl: String,
+    val keysUrl: String?,
     @SerializedName("labels_url")
-    val labelsUrl: String,
+    val labelsUrl: String?,
     @SerializedName("language")
     val language: Any,
     @SerializedName("languages_url")
-    val languagesUrl: String,
+    val languagesUrl: String?,
     @SerializedName("merges_url")
-    val mergesUrl: String,
+    val mergesUrl: String?,
     @SerializedName("milestones_url")
-    val milestonesUrl: String,
+    val milestonesUrl: String?,
     @SerializedName("mirror_url")
-    val mirrorUrl: String,
+    val mirrorUrl: String?,
     @SerializedName("name")
-    val name: String,
+    val name: String?,
     @SerializedName("node_id")
-    val nodeId: String,
+    val nodeId: String?,
     @SerializedName("notifications_url")
-    val notificationsUrl: String,
+    val notificationsUrl: String?,
     @SerializedName("open_issues_count")
     val openIssuesCount: Int,
     @SerializedName("owner")
@@ -115,43 +115,43 @@ data class UserRepositoryResponse(
     @SerializedName("private")
     val isPrivate: Boolean,
     @SerializedName("pulls_url")
-    val pullsUrl: String,
+    val pullsUrl: String?,
     @SerializedName("pushed_at")
-    val pushedAt: String,
+    val pushedAt: String?,
     @SerializedName("releases_url")
-    val releasesUrl: String,
+    val releasesUrl: String?,
     @SerializedName("security_and_analysis")
     val securityAndAnalysis: SecurityAndAnalysis,
     @SerializedName("size")
     val size: Int,
     @SerializedName("ssh_url")
-    val sshUrl: String,
+    val sshUrl: String?,
     @SerializedName("stargazers_count")
     val stargazersCount: Int,
     @SerializedName("stargazers_url")
-    val stargazersUrl: String,
+    val stargazersUrl: String?,
     @SerializedName("statuses_url")
-    val statusesUrl: String,
+    val statusesUrl: String?,
     @SerializedName("subscribers_url")
-    val subscribersUrl: String,
+    val subscribersUrl: String?,
     @SerializedName("subscription_url")
-    val subscriptionUrl: String,
+    val subscriptionUrl: String?,
     @SerializedName("svn_url")
-    val svnUrl: String,
+    val svnUrl: String?,
     @SerializedName("tags_url")
-    val tagsUrl: String,
+    val tagsUrl: String?,
     @SerializedName("teams_url")
-    val teamsUrl: String,
+    val teamsUrl: String?,
     @SerializedName("topics")
-    val topics: List<String>,
+    val topics: List<String?>,
     @SerializedName("trees_url")
-    val treesUrl: String,
+    val treesUrl: String?,
     @SerializedName("updated_at")
-    val updatedAt: String,
+    val updatedAt: String?,
     @SerializedName("url")
-    val url: String,
+    val url: String?,
     @SerializedName("visibility")
-    val visibility: String,
+    val visibility: String?,
     @SerializedName("watchers_count")
     val watchersCount: Int
 )

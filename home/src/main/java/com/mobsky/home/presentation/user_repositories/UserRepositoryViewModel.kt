@@ -1,5 +1,6 @@
 package com.mobsky.home.presentation.user_repositories
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mobsky.home.data.repository.UserRepositories
@@ -14,15 +15,25 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class UserRepositoryViewModel(
+    savedStateHandle: SavedStateHandle,
     private val getUserRepositoriesUseCase: GetUserRepositoriesUseCase
 ) : ViewModel() {
+
+    private val userId: String = checkNotNull(savedStateHandle["username"])
 
     private val _uiState = MutableStateFlow(UserRepositoryScreenState())
     val uiState: StateFlow<UserRepositoryScreenState> = _uiState.asStateFlow()
 
-    fun getUserRepositories(userName: String) {
+    fun getUserRepositories(userName: String? = null) {
+
+        val userNameParams = if(userName.isNullOrBlank()){
+            userId
+        }else{
+            userName
+        }
+
         viewModelScope.launch {
-            val listUsers = getUserRepositoriesUseCase.invoke(userName)
+            val listUsers = getUserRepositoriesUseCase.invoke(userNameParams)
             updateScreenState(listUsers)
         }
     }

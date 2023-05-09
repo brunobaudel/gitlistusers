@@ -11,6 +11,6 @@ internal val homeViewModelModules = module {
     }
 
     viewModel {
-        UserRepositoryViewModel(getUserRepositoriesUseCase = get())
+        UserRepositoryViewModel(getUserRepositoriesUseCase = get(), savedStateHandle = get())
     }
 }

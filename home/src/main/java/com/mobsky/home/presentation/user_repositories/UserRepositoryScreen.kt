@@ -8,7 +8,7 @@ import com.mobsky.home.presentation.screen_sections.git_user_repository_list.Use
 fun UserRepositoryScreen(viewModel: UserRepositoryViewModel) {
 
     LaunchedEffect(Unit) {
-        viewModel.getUserRepositories("treslines")
+        viewModel.getUserRepositories()
     }
     UserRepositoriesListView(uiStateFlow = viewModel.uiState)
 }

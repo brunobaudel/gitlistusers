@@ -21,10 +21,10 @@ fun List<UsersResponse>?.toGitUsers(): List<GitUser> =
 fun UserRepositoryResponse?.toGitRepository(): GitRepository =
     this?.let {
         GitRepository(
-            name = name,
-            description = description,
+            name = name.orEmpty(),
+            description = description.orEmpty(),
             isPrivate = isPrivate,
-            createdAt = createdAt,
+            createdAt = createdAt.orEmpty(),
             ownerName = owner.login,
             ownerAvatarUrl = owner.avatarUrl,
             starCount = stargazersCount,
