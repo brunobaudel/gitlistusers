@@ -22,8 +22,14 @@ fun UserRepositoryResponse?.toGitRepository(): GitRepository =
     this?.let {
         GitRepository(
             name = name,
+            description = description,
             isPrivate = isPrivate,
-            createdAt = createdAt
+            createdAt = createdAt,
+            ownerName = owner.login,
+            ownerAvatarUrl = owner.avatarUrl,
+            starCount = stargazersCount,
+            forksCount = forksCount
+
         )
     } ?: GitRepository()
 

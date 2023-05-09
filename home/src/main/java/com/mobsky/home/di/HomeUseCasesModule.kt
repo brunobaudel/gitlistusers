@@ -1,6 +1,7 @@
 package com.mobsky.home.di
 
 
+import com.mobsky.home.domain.usecase.GetUserRepositoriesUseCase
 import com.mobsky.home.domain.usecase.GetUserUseCase
 import com.mobsky.home.domain.usecase.GetUsersUseCase
 import org.koin.dsl.module
@@ -12,11 +13,11 @@ internal val homeUseCasesModules = module {
     }
 
     single {
-        GetUserUseCase(gitHubRepository = get())
+        GetUserRepositoriesUseCase(gitHubRepository = get())
     }
 
     single {
-        GetUsersUseCase(gitHubRepository = get())
+        GetUserUseCase(gitHubRepository = get())
     }
 
 }

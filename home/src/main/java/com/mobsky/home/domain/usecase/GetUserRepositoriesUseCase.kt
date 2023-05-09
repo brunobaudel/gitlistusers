@@ -1,12 +1,21 @@
 package com.mobsky.home.domain.usecase
 
 import com.mobsky.home.data.repository.GitHubRepository
+import com.mobsky.home.data.repository.UserRepositories
 import com.mobsky.home.data.repository.Users
 
 class GetUserRepositoriesUseCase(
     private val gitHubRepository: GitHubRepository
-) : UseCase<Users, Void>() {
-    override suspend fun run(params: Void): Users {
-        TODO("Not yet implemented")
+) : UseCase<UserRepositories, String>() {
+    override suspend fun run(params: String): UserRepositories = let {
+
+        val result = try {
+            gitHubRepository.getUserRepositories(params)
+        }catch (e: Exception){
+            e.message
+            mutableListOf()
+        }
+
+        result
     }
 }

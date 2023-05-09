@@ -1,4 +1,4 @@
-package com.mobsky.home.presentation
+package com.mobsky.home.presentation.home
 
 import com.mobsky.home.data.repository.Users
 

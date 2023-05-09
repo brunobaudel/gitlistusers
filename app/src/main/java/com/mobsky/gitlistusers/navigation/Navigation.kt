@@ -14,5 +14,6 @@ fun RootNavigationGraph(navController: NavHostController) {
         startDestination = AppGraph.homeGraph.ROOT
     ) {
         homeNavGraph(navController)
+
     }
 }

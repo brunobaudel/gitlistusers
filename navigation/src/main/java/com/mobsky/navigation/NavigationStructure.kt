@@ -7,6 +7,7 @@ object RootGraph {
 object HomeGraph {
     const val ROOT = "home_graph"
     const val HOME = "home_screen"
+    const val USER_REPOSITORIES = "user_repositories"
 }
 
 object AppGraph {

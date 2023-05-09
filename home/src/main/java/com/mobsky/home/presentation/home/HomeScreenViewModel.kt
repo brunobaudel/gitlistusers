@@ -1,4 +1,4 @@
-package com.mobsky.home.presentation
+package com.mobsky.home.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -21,25 +21,17 @@ class HomeScreenViewModel(
     fun getUsers() {
         viewModelScope.launch {
             val listUsers = getUsersUseCase.invoke()
-
-            _uiState.emit(
-                HomeScreenState(
-                    isLoad = false,
-                    users = listUsers
-                )
-            )
+            updateScreenState(listUsers)
         }
     }
 
     private fun updateScreenState(users: Users) {
-
-
-//        _uiState.update { currentState ->
-//            currentState.copy(
-//                isLoad = false,
-//                users = users
-//            )
-//        }
+        _uiState.update { currentState ->
+            currentState.copy(
+                isLoad = false,
+                users = users
+            )
+        }
     }
 
 
