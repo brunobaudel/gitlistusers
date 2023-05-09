@@ -1,5 +1,6 @@
 package com.mobsky.home.presentation.screen_sections.git_user_repository_list
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -9,7 +10,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Delete
+import androidx.compose.material.icons.rounded.List
+import androidx.compose.material.icons.rounded.Notifications
 import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -73,8 +79,20 @@ fun UserRepositoryListItem(gitUserRepository: GitRepository) {
                     text = gitUserRepository.description,
                     style = MaterialTheme.typography.bodyMedium
                 )
+                IconText("Forks: 21")
+
             }
         }
+    }
+}
+@Composable
+fun IconText(iconText: String){
+    Row{
+        Icon(
+            imageVector = Icons.Rounded.Notifications,
+            contentDescription = "Email Icon",
+        )
+        Text(text =iconText )
     }
 }
 
