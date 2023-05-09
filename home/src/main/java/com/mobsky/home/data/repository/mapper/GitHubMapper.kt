@@ -28,7 +28,7 @@ fun UserRepositoryResponse?.toGitRepository(): GitRepository =
             ownerName = owner.login,
             ownerAvatarUrl = owner.avatarUrl,
             starCount = stargazersCount,
-            forksCount = forksCount
+            forksCount = forksCount,
 
         )
     } ?: GitRepository()
