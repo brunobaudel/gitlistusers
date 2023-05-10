@@ -2,7 +2,7 @@ package com.mobsky.home.data.network.api.model.user
 
 import com.google.gson.annotations.SerializedName
 
-data class UsersResponse(
+data class UserInfoResponse(
     @SerializedName("avatar_url")
     val avatarUrl: String,
     @SerializedName("events_url")

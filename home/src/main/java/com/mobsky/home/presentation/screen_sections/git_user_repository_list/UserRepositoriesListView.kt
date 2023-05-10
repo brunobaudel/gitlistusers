@@ -17,22 +17,15 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.mobsky.home.data.repository.UserRepositories
 import com.mobsky.home.domain.model.GitRepository
-import com.mobsky.home.presentation.user_repositories.UserRepositoryScreenState
-import kotlinx.coroutines.flow.StateFlow
 
 @Composable
-fun UserRepositoriesListView(
-    uiStateFlow: StateFlow<UserRepositoryScreenState>
-) {
-
-    val uiState by uiStateFlow.collectAsState()
+fun UserRepositoriesListView(userRepositories: UserRepositories) {
 
     Column(
         modifier = Modifier
@@ -41,9 +34,9 @@ fun UserRepositoriesListView(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        if (uiState.userRepositories.isNotEmpty()) {
+        if (userRepositories.isNotEmpty()) {
             LazyColumn {
-                items(uiState.userRepositories) {
+                items(userRepositories) {
                     UserRepositoryListItem(it)
                 }
             }
@@ -64,7 +57,7 @@ fun UserRepositoryListItem(gitUserRepository: GitRepository) {
                 .fillMaxWidth()
                 .background(MaterialTheme.colorScheme.background)
         ) {
-            Column (modifier = Modifier.padding(horizontal = 8.dp)){
+            Column(modifier = Modifier.padding(horizontal = 8.dp)) {
                 Text(
                     modifier = Modifier
                         .padding(top = 8.dp),
@@ -87,14 +80,15 @@ fun UserRepositoryListItem(gitUserRepository: GitRepository) {
         }
     }
 }
+
 @Composable
-fun IconText(iconText: String){
-    Row{
+fun IconText(iconText: String) {
+    Row {
         Icon(
             imageVector = Icons.Rounded.Notifications,
             contentDescription = "Email Icon",
         )
-        Text(text =iconText )
+        Text(text = iconText)
     }
 }
 

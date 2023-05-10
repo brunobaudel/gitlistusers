@@ -1,12 +1,12 @@
 package com.mobsky.home.data.repository.mapper
 
-import com.mobsky.home.data.network.api.model.user.UsersResponse
+import com.mobsky.home.data.network.api.model.user.UserInfoResponse
 import com.mobsky.home.data.network.api.model.user_repository.UserRepositoryResponse
 import com.mobsky.home.domain.model.GitRepository
 import com.mobsky.home.domain.model.GitUser
 
 
-fun UsersResponse?.toGitUsers(): GitUser =
+fun UserInfoResponse?.toGitUsers(): GitUser =
     this?.let {
         GitUser(
             id = id.toString(),
@@ -15,7 +15,7 @@ fun UsersResponse?.toGitUsers(): GitUser =
         )
     } ?: GitUser()
 
-fun List<UsersResponse>?.toGitUsers(): List<GitUser> =
+fun List<UserInfoResponse>?.toGitUsers(): List<GitUser> =
     this?.map { it.toGitUsers() } ?: listOf()
 
 fun UserRepositoryResponse?.toGitRepository(): GitRepository =

@@ -4,10 +4,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mobsky.home.data.repository.UserRepositories
-import com.mobsky.home.data.repository.Users
 import com.mobsky.home.domain.usecase.GetUserRepositoriesUseCase
-import com.mobsky.home.domain.usecase.GetUsersUseCase
-import com.mobsky.home.domain.usecase.invoke
+import com.mobsky.home.presentation.util.TaskState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -34,18 +32,17 @@ class UserRepositoryViewModel(
 
         viewModelScope.launch {
             val listUsers = getUserRepositoriesUseCase.invoke(userNameParams)
-            updateScreenState(listUsers)
+            successScreenState(listUsers)
         }
     }
 
-    private fun updateScreenState(userRepositories: UserRepositories) {
+    private fun successScreenState(userRepositories: UserRepositories) {
         _uiState.update { currentState ->
             currentState.copy(
-                isLoad = false,
+                taskState = TaskState.Complete,
                 userRepositories = userRepositories
             )
         }
     }
-
 
 }

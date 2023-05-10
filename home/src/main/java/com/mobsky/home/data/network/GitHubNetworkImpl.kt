@@ -1,7 +1,7 @@
 package com.mobsky.home.data.network
 
 import com.mobsky.home.data.network.api.GitHubApi
-import com.mobsky.home.data.network.api.model.user.UsersResponse
+import com.mobsky.home.data.network.api.model.user.UserInfoResponse
 import com.mobsky.home.data.network.api.model.user_repository.UserRepositoryResponse
 import com.mobsky.network.util.ResultWrapper
 import com.mobsky.network.util.safeApiCall
@@ -13,7 +13,7 @@ class GitHubNetworkImpl(
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : GitHubNetwork {
 
-    override suspend fun getUsers(): ResultWrapper<List<UsersResponse>> =
+    override suspend fun getUsers(): ResultWrapper<List<UserInfoResponse>> =
         safeApiCall(
             dispatcher = dispatcher,
             apiCall = {
@@ -25,7 +25,7 @@ class GitHubNetworkImpl(
             }
         )
 
-    override suspend fun getUserInfo(userName: String): ResultWrapper<UsersResponse> =
+    override suspend fun getUserInfo(userName: String): ResultWrapper<UserInfoResponse> =
         safeApiCall(
             dispatcher = dispatcher,
             apiCall = {

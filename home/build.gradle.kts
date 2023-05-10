@@ -74,6 +74,7 @@ dependencies {
     implementation(Compose.material3)
     implementation(Compose.foundation)
     implementation(Compose.ui)
+    implementation(Compose.uiUtil)
     implementation(Compose.preview)
     debugImplementation(Compose.tooling)
     implementation(Compose.iconsCore)
@@ -88,4 +89,5 @@ dependencies {
     implementation(Compose.navigationCompose)
 
     implementation("com.github.bumptech.glide:compose:1.0.0-alpha.1")
+    implementation("io.coil-kt:coil-compose:2.3.0")
 }

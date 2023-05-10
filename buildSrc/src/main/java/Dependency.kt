@@ -66,6 +66,7 @@ object Compose {
     const val material3 = "androidx.compose.material3:material3"
     const val foundation = "androidx.compose.foundation:foundation"
     const val ui = "androidx.compose.ui:ui"
+    const val uiUtil = "androidx.compose.ui:ui-util"
     const val preview = "androidx.compose.ui:ui-tooling-preview"
     const val tooling = "androidx.compose.ui:ui-tooling"
     const val iconsCore = "androidx.compose.material:material-icons-core"

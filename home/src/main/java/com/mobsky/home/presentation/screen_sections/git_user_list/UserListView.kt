@@ -16,8 +16,6 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -26,28 +24,23 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
+import com.mobsky.home.data.repository.Users
 import com.mobsky.home.domain.model.GitUser
-import com.mobsky.home.presentation.home.HomeScreenState
-import kotlinx.coroutines.flow.StateFlow
 
 @Composable
-fun UserListView(uiStateFlow: StateFlow<HomeScreenState>, onItemClick: (gitUser: GitUser) -> Unit) {
-
-    val uiState by uiStateFlow.collectAsState()
+fun UserListView(users: Users, onItemClick: (gitUser: GitUser) -> Unit) {
 
     Column(
         modifier = Modifier
             .background(MaterialTheme.colorScheme.background)
-            .padding(top = 8.dp)
-
-        ,
+            .padding(top = 8.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
 
-        if (uiState.users.isNotEmpty()) {
+        if (users.isNotEmpty()) {
             LazyColumn {
-                items(uiState.users) {
+                items(users) {
                     UsersListItem(it, onItemClick)
                 }
             }

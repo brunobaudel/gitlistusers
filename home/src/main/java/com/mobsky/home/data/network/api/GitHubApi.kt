@@ -1,6 +1,6 @@
 package com.mobsky.home.data.network.api
 
-import com.mobsky.home.data.network.api.model.user.UsersResponse
+import com.mobsky.home.data.network.api.model.user.UserInfoResponse
 import com.mobsky.home.data.network.api.model.user_repository.UserRepositoryResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -11,13 +11,13 @@ interface GitHubApi {
      * Lista os usuários
      */
     @GET("users")
-    suspend fun getUsers(): List<UsersResponse>
+    suspend fun getUsers(): List<UserInfoResponse>
 
     /**
      * Obtem informações específicas de um usuário
      */
     @GET("users/{username}")
-    suspend fun getUserInfo(userName: String): UsersResponse
+    suspend fun getUserInfo(@Path("username") userName: String): UserInfoResponse
 
     /**
      * Lista os repositórios de um usuário específico

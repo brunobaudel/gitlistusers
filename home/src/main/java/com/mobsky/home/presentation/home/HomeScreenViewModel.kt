@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.mobsky.home.data.repository.Users
 import com.mobsky.home.domain.usecase.GetUsersUseCase
 import com.mobsky.home.domain.usecase.invoke
+import com.mobsky.home.presentation.util.TaskState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -23,26 +24,26 @@ class HomeScreenViewModel(
             try {
                 updateScreenStateProgress()
                 val listUsers = getUsersUseCase.invoke()
-                updateScreenState(listUsers)
+                updateScreenStateSuccess(listUsers)
             }catch (e: Exception){
-                updateScreenStateError()
+                updateScreenStateError(e)
             }
         }
     }
 
-    private fun updateScreenState(users: Users) {
+    private fun updateScreenStateSuccess(users: Users) {
         _uiState.update { currentState ->
             currentState.copy(
-                taskState = TaskState.COMPLETE,
+                taskState = TaskState.Complete,
                 users = users
             )
         }
     }
 
-    private fun updateScreenStateError() {
+    private fun updateScreenStateError(exception: Exception) {
         _uiState.update { currentState ->
             currentState.copy(
-                taskState = TaskState.COMPLETE
+                taskState = TaskState.Error(exception)
             )
         }
     }
@@ -50,7 +51,7 @@ class HomeScreenViewModel(
     private fun updateScreenStateProgress() {
         _uiState.update { currentState ->
             currentState.copy(
-                taskState = TaskState.IN_PROGRESS
+                taskState = TaskState.InProgress
             )
         }
     }

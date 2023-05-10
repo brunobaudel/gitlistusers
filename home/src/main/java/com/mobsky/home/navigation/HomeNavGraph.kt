@@ -8,6 +8,8 @@ import androidx.navigation.compose.navigation
 import androidx.navigation.navArgument
 import com.mobsky.home.presentation.home.HomeScreen
 import com.mobsky.home.presentation.home.HomeScreenViewModel
+import com.mobsky.home.presentation.user_profile.UserProfileScreen
+import com.mobsky.home.presentation.user_profile.UserProfileViewModel
 import com.mobsky.home.presentation.user_repositories.UserRepositoryScreen
 import com.mobsky.home.presentation.user_repositories.UserRepositoryViewModel
 import com.mobsky.navigation.AppGraph
@@ -21,14 +23,28 @@ fun NavGraphBuilder.homeNavGraph(navController: NavController) {
         route = AppGraph.homeGraph.ROOT,
         startDestination = AppGraph.homeGraph.HOME
     ) {
+
         composable(route = AppGraph.homeGraph.HOME) {
             val viewModel = koinViewModel<HomeScreenViewModel>()
             HomeScreen(viewModel) {
                 navController.navigate(
-                    AppGraph.homeGraph.USER_REPOSITORIES.getRouteWithParametersValue(it.name)
+                    AppGraph.homeGraph.USER_PROFILE.getRouteWithParametersValue(it.name)
                 )
             }
         }
+
+        composable(route = AppGraph.homeGraph.USER_PROFILE
+            .getRouteWithParameters(HomeGraphArgs.USER_PROFILE_NAME_PARAM),
+            arguments = listOf(
+                navArgument(HomeGraphArgs.USER_PROFILE_NAME_PARAM) {
+                    type = NavType.StringType
+                }
+            )
+        ) {
+            val viewModel = koinViewModel<UserProfileViewModel>()
+            UserProfileScreen(viewModel)
+        }
+
         composable(route = AppGraph.homeGraph.USER_REPOSITORIES
             .getRouteWithParameters(HomeGraphArgs.USER_REPOSITORIES_NAME_PARAM),
             arguments = listOf(
@@ -40,5 +56,6 @@ fun NavGraphBuilder.homeNavGraph(navController: NavController) {
             val viewModel = koinViewModel<UserRepositoryViewModel>()
             UserRepositoryScreen(viewModel)
         }
+
     }
 }

@@ -22,7 +22,7 @@ class GitHubRepositoryImpl(
         }
     }
 
-    override suspend fun getUserInfo(userName: String): GitUser {
+    override suspend fun getUserInfo(userName: String): User {
         return result {
             gitHubNetwork
                 .getUserInfo(userName)
