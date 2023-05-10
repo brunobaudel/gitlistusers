@@ -11,7 +11,8 @@ fun UserInfoResponse?.toGitUsers(): GitUser =
         GitUser(
             id = id.toString(),
             name = login,
-            avatarUrl = avatarUrl
+            avatarUrl = avatarUrl,
+            url = url
         )
     } ?: GitUser()
 

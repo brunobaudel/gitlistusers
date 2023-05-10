@@ -42,7 +42,11 @@ fun NavGraphBuilder.homeNavGraph(navController: NavController) {
             )
         ) {
             val viewModel = koinViewModel<UserProfileViewModel>()
-            UserProfileScreen(viewModel)
+            UserProfileScreen(viewModel) {
+                navController.navigate(
+                    AppGraph.homeGraph.USER_REPOSITORIES.getRouteWithParametersValue(it.name)
+                )
+            }
         }
 
         composable(route = AppGraph.homeGraph.USER_REPOSITORIES

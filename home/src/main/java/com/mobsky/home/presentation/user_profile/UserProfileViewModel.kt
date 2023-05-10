@@ -30,9 +30,13 @@ class UserProfileViewModel(
             userName
         }
 
-        viewModelScope.launch {
-            val user = getUserUseCase.invoke(userNameParams)
-            updateScreenStatSuccess(user)
+        try{
+            viewModelScope.launch {
+                val user = getUserUseCase.invoke(userNameParams)
+                updateScreenStatSuccess(user)
+            }
+        }catch (e: Exception){
+            updateScreenStateError(e)
         }
     }
 
@@ -41,6 +45,14 @@ class UserProfileViewModel(
             currentState.copy(
                 user = user,
                 taskState = TaskState.Complete
+            )
+        }
+    }
+
+    private fun updateScreenStateError(exception: Exception) {
+        _uiState.update { currentState ->
+            currentState.copy(
+                taskState = TaskState.Error(exception)
             )
         }
     }
