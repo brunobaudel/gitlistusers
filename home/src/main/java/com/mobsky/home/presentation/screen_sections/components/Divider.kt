@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun JetsnackDivider(
+fun Divider(
     modifier: Modifier = Modifier,
     color: Color = MaterialTheme.colorScheme.background.copy(alpha = DividerAlpha),
     thickness: Dp = 1.dp
@@ -34,7 +34,7 @@ private const val DividerAlpha = 0.12f
 private fun DividerPreview() {
     MaterialTheme {
         Box(Modifier.size(height = 10.dp, width = 100.dp)) {
-            JetsnackDivider(Modifier.align(Alignment.Center))
+            com.mobsky.home.presentation.screen_sections.components.Divider(Modifier.align(Alignment.Center))
         }
     }
 }

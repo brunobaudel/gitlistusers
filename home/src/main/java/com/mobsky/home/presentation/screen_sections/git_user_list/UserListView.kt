@@ -52,7 +52,7 @@ fun UserListView(users: Users, onItemClick: (gitUser: GitUser) -> Unit) {
 @Composable
 fun UsersListItem(gitUser: GitUser, onItemClick: ((gitUser: GitUser) -> Unit)? = null) {
     Card(
-        shape = RoundedCornerShape(0.dp),
+        shape = RoundedCornerShape(4.dp),
         modifier = Modifier
             .padding(start = 6.dp)
             .clickable { onItemClick?.invoke(gitUser) }

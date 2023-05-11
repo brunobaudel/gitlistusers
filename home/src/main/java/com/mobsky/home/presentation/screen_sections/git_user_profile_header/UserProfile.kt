@@ -64,7 +64,7 @@ private fun Image(imageUrl: String) {
 
 @Preview("default", showBackground = true)
 @Composable
-private fun SnackDetailPreview() {
+private fun UserDetailPreview() {
     UserDetailView(User(
         name = "Bruno",
         avatarUrl = "https://avatars.githubusercontent.com/u/1?v=4",
