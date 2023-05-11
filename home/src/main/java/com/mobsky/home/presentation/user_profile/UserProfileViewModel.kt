@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.mobsky.home.data.repository.User
 import com.mobsky.home.domain.usecase.GetUserUseCase
 import com.mobsky.home.presentation.util.TaskState
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -32,6 +33,9 @@ class UserProfileViewModel(
 
         try{
             viewModelScope.launch {
+                updateScreenStateProgress()
+                delay(5000)
+
                 val user = getUserUseCase.invoke(userNameParams)
                 updateScreenStatSuccess(user)
             }
@@ -53,6 +57,14 @@ class UserProfileViewModel(
         _uiState.update { currentState ->
             currentState.copy(
                 taskState = TaskState.Error(exception)
+            )
+        }
+    }
+
+    private fun updateScreenStateProgress() {
+        _uiState.update { currentState ->
+            currentState.copy(
+                taskState = TaskState.InProgress
             )
         }
     }

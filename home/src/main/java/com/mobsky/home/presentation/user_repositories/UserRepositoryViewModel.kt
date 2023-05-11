@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.mobsky.home.data.repository.UserRepositories
 import com.mobsky.home.domain.usecase.GetUserRepositoriesUseCase
 import com.mobsky.home.presentation.util.TaskState
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -24,15 +25,22 @@ class UserRepositoryViewModel(
 
     fun getUserRepositories(userName: String? = null) {
 
-        val userNameParams = if(userName.isNullOrBlank()){
+        val userNameParams = if (userName.isNullOrBlank()) {
             userId
-        }else{
+        } else {
             userName
         }
 
         viewModelScope.launch {
-            val listUsers = getUserRepositoriesUseCase.invoke(userNameParams)
-            successScreenState(listUsers)
+
+            updateScreenStateProgress()
+            delay(5000)
+            try {
+                val listUsers = getUserRepositoriesUseCase.invoke(userNameParams)
+                successScreenState(listUsers)
+            } catch (e: Exception) {
+                updateScreenStateError(e)
+            }
         }
     }
 
@@ -41,6 +49,22 @@ class UserRepositoryViewModel(
             currentState.copy(
                 taskState = TaskState.Complete,
                 userRepositories = userRepositories
+            )
+        }
+    }
+
+    private fun updateScreenStateProgress() {
+        _uiState.update { currentState ->
+            currentState.copy(
+                taskState = TaskState.InProgress
+            )
+        }
+    }
+
+    private fun updateScreenStateError(exception: Exception) {
+        _uiState.update { currentState ->
+            currentState.copy(
+                taskState = TaskState.Error(exception)
             )
         }
     }

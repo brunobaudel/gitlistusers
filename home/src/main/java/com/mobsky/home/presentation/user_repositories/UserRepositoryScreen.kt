@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import com.mobsky.home.presentation.screen_sections.components.ScreenStateView
+import com.mobsky.home.presentation.screen_sections.git_user_profile_header.UserDetailView
 import com.mobsky.home.presentation.screen_sections.git_user_repository_list.UserRepositoriesListView
 import com.mobsky.home.presentation.util.TaskState
 
@@ -12,13 +14,12 @@ fun UserRepositoryScreen(viewModel: UserRepositoryViewModel) {
 
     val uiState by viewModel.uiState.collectAsState()
 
-    viewModel.getUserRepositories()
+    if (uiState.taskState == TaskState.NotStarted) {
+        viewModel.getUserRepositories()
+    }
 
-    when (uiState.taskState) {
-        TaskState.Complete -> UserRepositoriesListView(userRepositories = uiState.userRepositories)
-        is TaskState.Error -> Unit
-        TaskState.InProgress -> Unit
-        TaskState.NotStarted -> Unit
+    ScreenStateView(uiState) {
+        UserRepositoriesListView(userRepositories = uiState.userRepositories)
     }
 
 }

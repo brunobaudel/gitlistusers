@@ -4,5 +4,5 @@ sealed class TaskState{
    object NotStarted : TaskState()
    object InProgress : TaskState()
    object Complete : TaskState()
-   class Error(exception: Exception) : TaskState()
+   class Error(val exception: Exception) : TaskState()
 }

@@ -6,11 +6,13 @@ import com.mobsky.home.data.repository.Users
 import com.mobsky.home.domain.usecase.GetUsersUseCase
 import com.mobsky.home.domain.usecase.invoke
 import com.mobsky.home.presentation.util.TaskState
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import okhttp3.internal.wait
 
 class HomeScreenViewModel(
     private val getUsersUseCase: GetUsersUseCase
@@ -23,6 +25,7 @@ class HomeScreenViewModel(
         viewModelScope.launch {
             try {
                 updateScreenStateProgress()
+                delay(5000)
                 val listUsers = getUsersUseCase.invoke()
                 updateScreenStateSuccess(listUsers)
             }catch (e: Exception){
