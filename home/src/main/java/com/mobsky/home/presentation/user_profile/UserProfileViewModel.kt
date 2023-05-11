@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.mobsky.home.data.repository.User
 import com.mobsky.home.domain.usecase.GetUserUseCase
 import com.mobsky.home.presentation.util.TaskState
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -18,7 +17,7 @@ class UserProfileViewModel(
     private val getUserUseCase: GetUserUseCase
 ) : ViewModel() {
 
-    private val userId: String = checkNotNull(savedStateHandle["username"])
+    private val userId: String = checkNotNull(savedStateHandle["userName"])
 
     private val _uiState = MutableStateFlow(UserProfileScreenState())
     val uiState: StateFlow<UserProfileScreenState> = _uiState.asStateFlow()
@@ -34,8 +33,6 @@ class UserProfileViewModel(
         try{
             viewModelScope.launch {
                 updateScreenStateProgress()
-                delay(5000)
-
                 val user = getUserUseCase.invoke(userNameParams)
                 updateScreenStatSuccess(user)
             }

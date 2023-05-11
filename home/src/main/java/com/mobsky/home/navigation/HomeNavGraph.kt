@@ -14,31 +14,30 @@ import com.mobsky.home.presentation.user_repositories.UserRepositoryScreen
 import com.mobsky.home.presentation.user_repositories.UserRepositoryViewModel
 import com.mobsky.home.presentation.user_search.UserSearchScreen
 import com.mobsky.home.presentation.user_search.UserSearchViewModel
-import com.mobsky.navigation.AppGraph
-import com.mobsky.navigation.HomeGraphArgs
-import com.mobsky.navigation.getRouteWithParameters
+
+import com.mobsky.navigation.HomeGraph
 import com.mobsky.navigation.getRouteWithParametersValue
+
 import org.koin.androidx.compose.koinViewModel
 
 fun NavGraphBuilder.homeNavGraph(navController: NavController) {
     navigation(
-        route = AppGraph.homeGraph.ROOT,
-        startDestination = AppGraph.homeGraph.HOME
+        route = HomeGraph.Root().rote,
+        startDestination = HomeGraph.Home().rote
     ) {
 
-        composable(route = AppGraph.homeGraph.HOME) {
+        composable(route = HomeGraph.Home().rote) {
             val viewModel = koinViewModel<HomeScreenViewModel>()
             HomeScreen(viewModel) {
                 navController.navigate(
-                    AppGraph.homeGraph.USER_PROFILE.getRouteWithParametersValue(it.name)
+                    HomeGraph.UserProfile().rote.getRouteWithParametersValue(it.name)
                 )
             }
         }
 
-        composable(route = AppGraph.homeGraph.USER_PROFILE
-            .getRouteWithParameters(HomeGraphArgs.USER_PROFILE_NAME_PARAM),
+        composable(route = HomeGraph.UserProfile().routeParameters,
             arguments = listOf(
-                navArgument(HomeGraphArgs.USER_PROFILE_NAME_PARAM) {
+                navArgument(HomeGraph.UserProfile().parameterName) {
                     type = NavType.StringType
                 }
             )
@@ -46,15 +45,14 @@ fun NavGraphBuilder.homeNavGraph(navController: NavController) {
             val viewModel = koinViewModel<UserProfileViewModel>()
             UserProfileScreen(viewModel) {
                 navController.navigate(
-                    AppGraph.homeGraph.USER_REPOSITORIES.getRouteWithParametersValue(it.name)
+                    HomeGraph.UserRepositories().rote.getRouteWithParametersValue(it.name)
                 )
             }
         }
 
-        composable(route = AppGraph.homeGraph.USER_REPOSITORIES
-            .getRouteWithParameters(HomeGraphArgs.USER_REPOSITORIES_NAME_PARAM),
+        composable(route = HomeGraph.UserRepositories().routeParameters,
             arguments = listOf(
-                navArgument(HomeGraphArgs.USER_REPOSITORIES_NAME_PARAM) {
+                navArgument(HomeGraph.UserRepositories().parameterName) {
                     type = NavType.StringType
                 }
             )
@@ -63,7 +61,7 @@ fun NavGraphBuilder.homeNavGraph(navController: NavController) {
             UserRepositoryScreen(viewModel)
         }
 
-        composable(route = AppGraph.homeGraph.USER_SEARCH) {
+        composable(route = HomeGraph.UserSearch().rote) {
             val viewModel = koinViewModel<UserSearchViewModel>()
             UserSearchScreen(viewModel)
         }

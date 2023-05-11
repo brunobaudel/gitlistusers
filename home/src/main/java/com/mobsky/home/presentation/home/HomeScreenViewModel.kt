@@ -24,10 +24,8 @@ class HomeScreenViewModel(
         viewModelScope.launch {
             try {
                 updateScreenStateProgress()
-                delay(2000)
                 val listUsers = getUsersUseCase.invoke()
                 updateScreenStateSuccess(listUsers)
-//                updateScreenStateError(java.lang.Exception())
             }catch (e: Exception){
                 updateScreenStateError(e)
             }

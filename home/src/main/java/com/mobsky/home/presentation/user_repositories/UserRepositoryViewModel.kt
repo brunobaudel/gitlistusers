@@ -32,10 +32,8 @@ class UserRepositoryViewModel(
         }
 
         viewModelScope.launch {
-
-            updateScreenStateProgress()
-            delay(5000)
             try {
+                updateScreenStateProgress()
                 val listUsers = getUserRepositoriesUseCase.invoke(userNameParams)
                 successScreenState(listUsers)
             } catch (e: Exception) {

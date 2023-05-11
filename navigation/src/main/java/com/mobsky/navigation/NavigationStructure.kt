@@ -1,26 +1,27 @@
 package com.mobsky.navigation
 
-object RootGraph {
-    const val ROOT = "root_graph"
+abstract class Navigate
+
+sealed class RootGraph : Navigate() {
+    class Root(val rote: String = "rootGraph") : Navigate()
 }
 
-object HomeGraph {
-    const val ROOT = "homeGraph"
-    const val HOME = "homeScreen"
-    const val USER_REPOSITORIES = "userRepositories"
-    const val USER_PROFILE = "userProfile"
-    const val USER_SEARCH = "userSearch"
+sealed class HomeGraph : Navigate() {
+    class Root(val rote: String = "homeGraph") : Navigate()
+    class Home(val rote: String = "home") : Navigate()
+    class UserRepositories(
+        val rote: String = "userRepositories",
+        val routeParameters: String = "userRepositories\\{userName}",
+        val parameterName: String = "userName"
+    ) : Navigate()
+
+    class UserProfile(
+        val rote: String = "userProfile",
+        val routeParameters: String = "userProfile\\{userName}",
+        val parameterName: String = "userName"
+    ) : Navigate()
+
+    class UserSearch(val rote: String = "userSearch") : Navigate()
 }
 
-object HomeGraphArgs {
-    const val USER_REPOSITORIES_NAME_PARAM = "username"
-    const val USER_PROFILE_NAME_PARAM = "username"
-}
-
-object AppGraph {
-    val initial = RootGraph
-    val homeGraph = HomeGraph
-}
-
-fun String.getRouteWithParameters(parameterName: String) = "$this\\{$parameterName}"
-fun String.getRouteWithParametersValue(parameterName: String) = "$this\\$parameterName"
+fun String.getRouteWithParametersValue(value: String) = "$this\\$value"

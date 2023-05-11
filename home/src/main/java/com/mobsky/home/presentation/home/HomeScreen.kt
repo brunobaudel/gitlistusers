@@ -49,7 +49,7 @@ fun HomeScreen(viewModel: HomeScreenViewModel, onClickNavigation: (gitUser: GitU
                 NavigationDrawerItem(
                     label = { Text("Teste") },
                     selected = false,
-                    onClick = {},
+                    onClick = {    },
                     modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
                 )
             }
