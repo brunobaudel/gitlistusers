@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -24,20 +23,19 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.mobsky.home.domain.model.GitUser
 import com.mobsky.home.presentation.screen_sections.components.ScreenStateView
 import com.mobsky.home.presentation.screen_sections.git_user_list.UserListView
 import com.mobsky.home.presentation.util.TaskState
+import com.mobsky.navigation.HomeGraph
+import com.mobsky.navigation.Navigate
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(viewModel: HomeScreenViewModel, onClickNavigation: (gitUser: GitUser) -> Unit) {
+fun HomeScreen(viewModel: HomeScreenViewModel, onClickNavigation: (navigate: Navigate) -> Unit) {
 
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
@@ -49,7 +47,7 @@ fun HomeScreen(viewModel: HomeScreenViewModel, onClickNavigation: (gitUser: GitU
                 NavigationDrawerItem(
                     label = { Text("Teste") },
                     selected = false,
-                    onClick = {    },
+                    onClick = { onClickNavigation(HomeGraph.UserSearch()) },
                     modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
                 )
             }
@@ -57,10 +55,12 @@ fun HomeScreen(viewModel: HomeScreenViewModel, onClickNavigation: (gitUser: GitU
         content = {
             Scaffold(
                 modifier = Modifier,
-                topBar = { HomeTopBar("Teste", onSearchIconClicked = {
-                    scope.launch { drawerState.open() }
-                }) },
-                content = {  innerPadding ->
+                topBar = {
+                    HomeTopBar("Teste", onSearchIconClicked = {
+                        scope.launch { drawerState.open() }
+                    })
+                },
+                content = { innerPadding ->
                     Column(
                         modifier = Modifier.padding(innerPadding)
                     ) {
@@ -71,7 +71,7 @@ fun HomeScreen(viewModel: HomeScreenViewModel, onClickNavigation: (gitUser: GitU
 }
 
 @Composable
-fun HomeView(viewModel: HomeScreenViewModel, onClickNavigation: (gitUser: GitUser) -> Unit) {
+fun HomeView(viewModel: HomeScreenViewModel, onClickNavigation: (navigate: Navigate) -> Unit) {
 
     val uiState by viewModel.uiState.collectAsState()
 
@@ -84,7 +84,9 @@ fun HomeView(viewModel: HomeScreenViewModel, onClickNavigation: (gitUser: GitUse
         content = {
             UserListView(
                 users = uiState.users,
-                onItemClick = { onClickNavigation(it) }
+                onItemClick = {
+                    onClickNavigation(HomeGraph.UserProfile(parameterValue = it.name))
+                }
             )
         }
     )
@@ -103,7 +105,7 @@ fun HomeTopBar(topBarName: String, onSearchIconClicked: () -> Unit) {
     Surface(shadowElevation = 4.dp) {
         TopAppBar(title = { Text(text = topBarName) },
             navigationIcon = {
-                IconButton(onClick = {onSearchIconClicked()}) {
+                IconButton(onClick = { onSearchIconClicked() }) {
                     Icon(Icons.Filled.Menu, "")
                 }
             }

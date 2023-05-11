@@ -20,21 +20,20 @@ class UserSearchViewModel(
     val uiState: StateFlow<UserSearchScreenState> = _uiState.asStateFlow()
 
     fun getUserInfo(userName: String? = null) {
-
-        try{
-            viewModelScope.launch {
+        viewModelScope.launch {
+            try {
                 updateScreenStateProgress()
                 delay(5000)
 
                 val user = getUserUseCase.invoke(userName)
                 updateScreenStatSuccess(user)
+            } catch (e: Exception) {
+                updateScreenStateError(e)
             }
-        }catch (e: Exception){
-            updateScreenStateError(e)
         }
     }
 
-    private fun updateScreenStatSuccess(user:User) {
+    private fun updateScreenStatSuccess(user: User) {
         _uiState.update { currentState ->
             currentState.copy(
                 user = user,

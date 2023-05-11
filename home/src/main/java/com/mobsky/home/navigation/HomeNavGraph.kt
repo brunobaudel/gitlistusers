@@ -29,9 +29,13 @@ fun NavGraphBuilder.homeNavGraph(navController: NavController) {
         composable(route = HomeGraph.Home().rote) {
             val viewModel = koinViewModel<HomeScreenViewModel>()
             HomeScreen(viewModel) {
-                navController.navigate(
-                    HomeGraph.UserProfile().rote.getRouteWithParametersValue(it.name)
-                )
+                val destination = when (it) {
+                    is HomeGraph.UserProfile -> it.rote.getRouteWithParametersValue(it.parameterValue)
+                    is HomeGraph.UserSearch -> it.rote
+                    else -> ""
+                }
+
+                navController.navigate(destination)
             }
         }
 

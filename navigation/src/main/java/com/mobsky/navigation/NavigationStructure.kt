@@ -18,7 +18,8 @@ sealed class HomeGraph : Navigate() {
     class UserProfile(
         val rote: String = "userProfile",
         val routeParameters: String = "userProfile\\{userName}",
-        val parameterName: String = "userName"
+        val parameterName: String = "userName",
+        val parameterValue: String = ""
     ) : Navigate()
 
     class UserSearch(val rote: String = "userSearch") : Navigate()

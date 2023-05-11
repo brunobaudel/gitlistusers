@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.mobsky.home.data.repository.UserRepositories
 import com.mobsky.home.domain.usecase.GetUserRepositoriesUseCase
 import com.mobsky.home.presentation.util.TaskState
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -18,7 +17,7 @@ class UserRepositoryViewModel(
     private val getUserRepositoriesUseCase: GetUserRepositoriesUseCase
 ) : ViewModel() {
 
-    private val userId: String = checkNotNull(savedStateHandle["username"])
+    private val userId: String = checkNotNull(savedStateHandle["userName"])
 
     private val _uiState = MutableStateFlow(UserRepositoryScreenState())
     val uiState: StateFlow<UserRepositoryScreenState> = _uiState.asStateFlow()
