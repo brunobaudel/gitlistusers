@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -25,6 +26,7 @@ import com.mobsky.home.presentation.util.TaskState
 @Composable
 fun ScreenStateView(
     screenState: ScreenState,
+    tryAgainCallBack: (() -> Unit)? = null,
     content: (@Composable () -> Unit)? = null
 ) {
     Box(
@@ -36,7 +38,7 @@ fun ScreenStateView(
 
         when (val state = screenState.taskStateScreen) {
             TaskState.Complete -> content?.invoke()
-            is TaskState.Error -> ErrorScreen(state.exception)
+            is TaskState.Error -> ErrorScreen(state.exception, tryAgainCallBack)
             TaskState.NotStarted,
             TaskState.InProgress -> LoadScreen(showShimmer.value)
         }
@@ -44,7 +46,12 @@ fun ScreenStateView(
 }
 
 @Composable
-private fun ErrorScreen(exception: Exception) {
+private fun ErrorScreen(
+    exception: Exception,
+    tryAgainAction: (() -> Unit)? = null
+) {
+
+    ComposableDialog()
 
     Column {
         Icon(
@@ -59,6 +66,10 @@ private fun ErrorScreen(exception: Exception) {
             style = MaterialTheme.typography.headlineMedium,
             modifier = Modifier.padding(top = 8.dp)
         )
+
+        Button(onClick = { tryAgainAction?.invoke() }) {
+            Text(text = "Tentar novamente?")
+        }
     }
 }
 

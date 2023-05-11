@@ -12,6 +12,8 @@ import com.mobsky.home.presentation.user_profile.UserProfileScreen
 import com.mobsky.home.presentation.user_profile.UserProfileViewModel
 import com.mobsky.home.presentation.user_repositories.UserRepositoryScreen
 import com.mobsky.home.presentation.user_repositories.UserRepositoryViewModel
+import com.mobsky.home.presentation.user_search.UserSearchScreen
+import com.mobsky.home.presentation.user_search.UserSearchViewModel
 import com.mobsky.navigation.AppGraph
 import com.mobsky.navigation.HomeGraphArgs
 import com.mobsky.navigation.getRouteWithParameters
@@ -61,5 +63,9 @@ fun NavGraphBuilder.homeNavGraph(navController: NavController) {
             UserRepositoryScreen(viewModel)
         }
 
+        composable(route = AppGraph.homeGraph.USER_SEARCH) {
+            val viewModel = koinViewModel<UserSearchViewModel>()
+            UserSearchScreen(viewModel)
+        }
     }
 }

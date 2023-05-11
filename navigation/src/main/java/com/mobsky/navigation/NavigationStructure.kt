@@ -9,6 +9,7 @@ object HomeGraph {
     const val HOME = "homeScreen"
     const val USER_REPOSITORIES = "userRepositories"
     const val USER_PROFILE = "userProfile"
+    const val USER_SEARCH = "userSearch"
 }
 
 object HomeGraphArgs {

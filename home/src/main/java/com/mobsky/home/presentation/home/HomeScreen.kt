@@ -41,42 +41,14 @@ fun HomeView(viewModel: HomeScreenViewModel, onClickNavigation: (gitUser: GitUse
         viewModel.getUsers()
     }
 
-    ScreenStateView(uiState) {
-        UserListView(
-            users = uiState.users,
-            onItemClick = { onClickNavigation(it) }
-        )
-    }
-}
-
-@Composable
-fun ComposableDialog(
-    onConfirmButton: () -> Unit = {},
-    onDismissButton: () -> Unit = {},
-    setShowDialog: (Boolean) -> Unit = {}
-) {
-    AlertDialog(
-        onDismissRequest = { setShowDialog(false) },
-        confirmButton = {
-            TextButton(onClick = {
-                onConfirmButton()
-                setShowDialog(false)
-            }) {
-                Text("Apagar")
-            }
-        },
-        dismissButton = {
-            TextButton(onClick = {
-                onDismissButton()
-                setShowDialog(false)
-            }) {
-                Text("Cancelar")
-            }
-        },
-        icon = { Icon(Icons.Filled.Info, null) },
-        title = { Text(text = "Apagar dados de navegação?", fontSize = 20.sp) },
-        text = null, //{ Text(text = "Isso vai fazer com que seu histórico de navegação seja completamente apagado.") },
-        modifier = Modifier.fillMaxWidth()
+    ScreenStateView(uiState,
+        tryAgainCallBack = { viewModel.getUsers() },
+        content = {
+            UserListView(
+                users = uiState.users,
+                onItemClick = { onClickNavigation(it) }
+            )
+        }
     )
 }
 
