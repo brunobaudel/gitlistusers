@@ -37,6 +37,7 @@ fun NavGraphBuilder.homeNavGraph(navController: NavController) {
 
                 navController.navigate(destination)
             }
+
         }
 
         composable(route = HomeGraph.UserProfile().routeParameters,

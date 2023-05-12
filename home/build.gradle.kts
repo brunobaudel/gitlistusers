@@ -72,6 +72,7 @@ dependencies {
     androidTestImplementation(composeBom)
 
     implementation(Compose.material3)
+    implementation(Compose.material)
     implementation(Compose.foundation)
     implementation(Compose.ui)
     implementation(Compose.uiUtil)

@@ -23,7 +23,6 @@ class UserSearchViewModel(
         viewModelScope.launch {
             try {
                 updateScreenStateProgress()
-                delay(5000)
 
                 val user = getUserUseCase.invoke(userName)
                 updateScreenStatSuccess(user)

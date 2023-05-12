@@ -39,8 +39,8 @@ fun ScreenStateView(
         when (val state = screenState.taskStateScreen) {
             TaskState.Complete -> content?.invoke()
             is TaskState.Error -> ErrorScreen(state.exception, tryAgainCallBack)
-            TaskState.NotStarted,
             TaskState.InProgress -> LoadScreen(showShimmer.value)
+            TaskState.NotStarted -> Unit
         }
     }
 }

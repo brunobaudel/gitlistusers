@@ -64,6 +64,7 @@ object kotlinxCoroutines {
 object Compose {
     const val bom = "androidx.compose:compose-bom:${Versions.composeBomVersion}"
     const val material3 = "androidx.compose.material3:material3"
+    const val material = "androidx.compose.material:material"
     const val foundation = "androidx.compose.foundation:foundation"
     const val ui = "androidx.compose.ui:ui"
     const val uiUtil = "androidx.compose.ui:ui-util"

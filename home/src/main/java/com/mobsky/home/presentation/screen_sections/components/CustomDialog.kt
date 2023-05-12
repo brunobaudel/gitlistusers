@@ -29,20 +29,12 @@ fun ComposableDialog(
                     onConfirmButton()
                     shouldShowDialog.value = false
                 }) {
-                    Text("Apagar")
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = {
-                    onDismissButton()
-                    shouldShowDialog.value = false
-                }) {
-                    Text("Cancelar")
+                    Text("Ok")
                 }
             },
             icon = { Icon(Icons.Filled.Info, null) },
-            title = { Text(text = "Apagar dados de navegação?", fontSize = 20.sp) },
-            text = null, //{ Text(text = "Isso vai fazer com que seu histórico de navegação seja completamente apagado.") },
+            title = { Text(text = "Houve um erro", fontSize = 20.sp) },
+            text = { Text(text = "Você pode tentar novamente. Se o problema persistir volte mais tarde.") },
             modifier = Modifier.fillMaxWidth()
         )
     }
