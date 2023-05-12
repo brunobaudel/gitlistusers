@@ -23,7 +23,6 @@ class UserSearchViewModel(
         viewModelScope.launch {
             try {
                 updateScreenStateProgress()
-
                 val user = getUserUseCase.invoke(userName)
                 updateScreenStatSuccess(user)
             } catch (e: Exception) {

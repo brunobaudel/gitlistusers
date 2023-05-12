@@ -1,6 +1,8 @@
 package com.mobsky.home.data.network
 
+import com.google.gson.Gson
 import com.mobsky.home.data.network.api.GitHubApi
+import com.mobsky.home.data.network.api.model.git_error.GitErrorModelResponse
 import com.mobsky.home.data.network.api.model.user.UserInfoResponse
 import com.mobsky.home.data.network.api.model.user_repository.UserRepositoryResponse
 import com.mobsky.network.util.ResultWrapper
@@ -20,8 +22,7 @@ class GitHubNetworkImpl(
                 gitHubApi.getUsers()
             },
             transformError = {
-                ""
-//                Gson().fromJson(it, GitHubErrorModel::class.java).message
+                Gson().fromJson(it, GitErrorModelResponse::class.java).message
             }
         )
 
@@ -32,8 +33,7 @@ class GitHubNetworkImpl(
                 gitHubApi.getUserInfo(userName)
             },
             transformError = {
-                ""
-//                Gson().fromJson(it, GitHubErrorModel::class.java).message
+                Gson().fromJson(it, GitErrorModelResponse::class.java).message
             }
         )
 
@@ -44,8 +44,7 @@ class GitHubNetworkImpl(
                 gitHubApi.getUserRepositories(userName)
             },
             transformError = {
-                ""
-//                Gson().fromJson(it, GitHubErrorModel::class.java).message
+                Gson().fromJson(it, GitErrorModelResponse::class.java).message
             }
         )
 }

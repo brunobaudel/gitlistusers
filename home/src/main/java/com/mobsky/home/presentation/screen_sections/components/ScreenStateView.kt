@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
@@ -57,17 +58,24 @@ private fun ErrorScreen(
         Icon(
             imageVector = Icons.Filled.Info,
             modifier = Modifier
+                .fillMaxWidth()
                 .align(CenterHorizontally)
-                .size(36.dp),
+                .size(56.dp),
             contentDescription = ""
         )
         Text(
-            text = exception.message.orEmpty(),
-            style = MaterialTheme.typography.headlineMedium,
-            modifier = Modifier.padding(top = 8.dp)
+            text = exception.message ?: "Erro desconnhecido!",
+            style = MaterialTheme.typography.headlineSmall,
+            modifier = Modifier
+                .padding(top = 16.dp)
+                .align(CenterHorizontally)
         )
 
-        Button(onClick = { tryAgainAction?.invoke() }) {
+        Button(
+            modifier = Modifier
+                .padding(top = 16.dp)
+                .align(CenterHorizontally),
+            onClick = { tryAgainAction?.invoke() }) {
             Text(text = "Tentar novamente?")
         }
     }
@@ -88,7 +96,7 @@ private fun LoadScreen(showShimmer: Boolean) {
 @Composable
 fun ScreenStateViewPreview() {
 
-    val screenState = ScreenState(TaskState.InProgress)
+    val screenState = ScreenState(TaskState.Error(java.lang.Exception()))
 
     ScreenStateView(screenState)
 }

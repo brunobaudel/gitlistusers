@@ -1,5 +1,6 @@
 package com.mobsky.home.presentation.screen_sections.components
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -16,15 +17,21 @@ import com.bumptech.glide.integration.compose.GlideImage
 @Composable
 fun GitListImage(
     imageUrl: String,
+    modifier: Modifier = Modifier,
+    imageSize: Dp =  90.dp,
     contentDescription: String?
 ) {
-    GlideImage(
-        model = imageUrl,
-        contentDescription = contentDescription,
-        contentScale = ContentScale.Crop,
-        modifier = Modifier
-            .size(90.dp)
-            .padding(5.dp)
-            .clip(RoundedCornerShape(8.dp))
-    )
+    Box(
+        modifier = Modifier.padding(4.dp).then(modifier)
+    ) {
+        GlideImage(
+            model = imageUrl,
+            contentDescription = contentDescription,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .size(imageSize)
+                .padding(5.dp)
+                .clip(RoundedCornerShape(8.dp))
+        )
+    }
 }

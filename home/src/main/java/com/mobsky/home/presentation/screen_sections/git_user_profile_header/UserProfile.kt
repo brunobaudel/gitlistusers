@@ -9,15 +9,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.mobsky.home.data.repository.User
 import com.mobsky.home.presentation.screen_sections.components.GitListImage
-
-
-private val HzPadding = Modifier.padding(horizontal = 24.dp)
 
 @Composable
 fun UserDetailView(
@@ -25,10 +22,11 @@ fun UserDetailView(
 ) {
 
     Column(Modifier.fillMaxSize()) {
-        Image(user.avatarUrl)
         Title(user)
         TextButton(
-            modifier = HzPadding,
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .padding(top = 36.dp),
             onClick = { navigate(user) }
         ) {
             Text(text = "Repositorios")
@@ -42,24 +40,33 @@ private fun Title(user: User) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .background(color = MaterialTheme.colorScheme.background)) {
+            .padding(top = 8.dp)
+            .background(color = MaterialTheme.colorScheme.background)
+    ) {
+
+        GitListImage(
+            imageUrl = user.avatarUrl,
+            imageSize = 180.dp,
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally),
+            contentDescription = null
+        )
+
         Text(
             text = user.name,
-            style = MaterialTheme.typography.bodyMedium,
-            modifier = HzPadding
+            style = MaterialTheme.typography.headlineMedium,
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .padding(top = 8.dp)
         )
         Text(
             text = user.url,
             style = MaterialTheme.typography.bodyLarge,
-            fontSize = 20.sp,
-            modifier = HzPadding
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .padding(top = 8.dp)
         )
     }
-}
-
-@Composable
-private fun Image(imageUrl: String) {
-    GitListImage(imageUrl = imageUrl, contentDescription = null)
 }
 
 @Preview("default", showBackground = true)

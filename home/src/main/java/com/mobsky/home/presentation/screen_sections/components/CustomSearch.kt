@@ -2,7 +2,6 @@ package com.mobsky.home.presentation.screen_sections.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.AppBarDefaults
@@ -18,6 +17,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -29,15 +29,14 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.material3.TopAppBar
 
 @Composable
 fun SearchableTopBar(
     currentSearchText: String,
-    onSearchTextChanged: (String) -> Unit,
-    onSearchDeactivated: () -> Unit,
-    onSearchDispatched: (String) -> Unit,
-    onSearchIconClicked: () -> Unit
+    onSearchTextChanged: ((String) -> Unit) = {},
+    onSearchDeactivated: () -> Unit = {},
+    onSearchDispatched: (String) -> Unit = {},
+    onSearchIconClicked: () -> Unit = {}
 ) {
 
     val isShowingSearchField = remember { mutableStateOf(false) }
@@ -100,7 +99,9 @@ fun SearchTopBar(
             },
             textStyle = TextStyle(fontSize = MaterialTheme.typography.bodyLarge.fontSize),
             singleLine = true,
-            leadingIcon = { SearchLeadingIcon() },
+            leadingIcon = { SearchLeadingIcon{
+                onSearchDispatched(currentSearchRememberValue)
+            } },
             trailingIcon = {
                 SearchTrailingIcon {
                     if (currentSearchRememberValue.isNotEmpty()) {
