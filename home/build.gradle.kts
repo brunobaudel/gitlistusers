@@ -49,11 +49,14 @@ dependencies {
     implementation(project(mapOf("path" to ":navigation")))
     implementation(project(mapOf("path" to ":network")))
 
-    implementation("androidx.core:core-ktx:1.10.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
-    implementation("androidx.core:core-ktx:1.10.0")
+    implementation(AndroidX.coreKtx)
+    implementation(AndroidX.appCompat)
+    implementation(Android.material)
+
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.mockito:mockito-core:4.5.1")
+    testImplementation("androidx.test:core:1.5.0")
+
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
@@ -69,7 +72,7 @@ dependencies {
     //Compose
     val composeBom = platform(Compose.bom)
     implementation(composeBom)
-    androidTestImplementation(composeBom)
+//    androidTestImplementation(composeBom)
 
     implementation(Compose.material3)
     implementation(Compose.material)
@@ -91,10 +94,6 @@ dependencies {
 
     implementation("com.github.bumptech.glide:compose:1.0.0-alpha.3")
 
-    testImplementation ("org.mockito.kotlin:mockito-kotlin:4.1.0")
-    testImplementation ("org.jetbrains.kotlin:kotlin-stdlib:1.5.0")
-    testImplementation ("org.mockito:mockito-core:4.5.1")
-    testImplementation ("androidx.arch.core:core-testing:2.2.0")
-    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+
 
 }

@@ -22,6 +22,9 @@ object Versions {
     const val composeNavigationVersion = "2.5.3"
     const val composeViewModelVersion = "2.5.1"
     const val composeActivityVersion = "1.6.1"
+    const val androidXCoreKtxVersion = "1.10.1"
+    const val androidXAppCompatVersion = "1.6.1"
+    const val androidMaterialVersion = "1.9.0"
 }
 
 object Koin {
@@ -77,4 +80,13 @@ object Compose {
     const val livedataCompose = "androidx.compose.runtime:runtime-livedata"
     const val navigationCompose =
         "androidx.navigation:navigation-compose:${Versions.composeNavigationVersion}"
+}
+
+object AndroidX {
+    const val coreKtx = "androidx.core:core-ktx:${Versions.androidXCoreKtxVersion}"
+    const val appCompat = "androidx.appcompat:appcompat:${Versions.androidXAppCompatVersion}"
+}
+
+object Android{
+    const val material = "com.google.android.material:material:${Versions.androidMaterialVersion}"
 }

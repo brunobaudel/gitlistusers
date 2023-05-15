@@ -8,7 +8,7 @@ class GetUsersUseCase(
     private val gitHubRepository: GitHubRepository
 ) : UseCase<Users, Unit>() {
 
-    override suspend fun run(params: Unit): Users = mock()//  gitHubRepository.getUsers() //
+    override suspend fun run(params: Unit): Users = gitHubRepository.getUsers()
 
     private fun mock() =  listOf(
         GitUser(name = "mojombo", avatarUrl = "https://avatars.githubusercontent.com/u/20?v=4"),

@@ -56,10 +56,9 @@ dependencies {
     implementation project(path: ':navigation')
     implementation project(path: ':home')
 
-    implementation 'androidx.core:core-ktx:1.10.0'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
-    implementation 'androidx.core:core-ktx:1.10.0'
+    implementation AndroidX.coreKtx
+    implementation AndroidX.appCompat
+    implementation Android.material
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
@@ -74,7 +73,6 @@ dependencies {
     //Compose
     def composeBom = platform(Compose.bom)
     implementation composeBom
-    androidTestImplementation composeBom
 
     implementation Compose.material3
     implementation Compose.foundation
@@ -87,9 +85,5 @@ dependencies {
     implementation Compose.activityCompose
     // Optional - Navigation
     implementation Compose.navigationCompose
-
-//    var android_systembars_ui_controler = '0.24.9-beta'
-//    // MATERIAL 3 - MATERIAL YOU STATUS BAR
-//    implementation "com.google.accompanist:accompanist-systemuicontroller:$android_systembars_ui_controler"
 
 }
