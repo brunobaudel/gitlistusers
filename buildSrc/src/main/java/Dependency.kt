@@ -25,6 +25,7 @@ object Versions {
     const val androidXCoreKtxVersion = "1.10.1"
     const val androidXAppCompatVersion = "1.6.1"
     const val androidMaterialVersion = "1.9.0"
+    const val glideComposeVersion = "1.0.0-alpha.3"
 }
 
 object Koin {
@@ -89,4 +90,8 @@ object AndroidX {
 
 object Android{
     const val material = "com.google.android.material:material:${Versions.androidMaterialVersion}"
+}
+
+object Glide{
+    const val glideCompose = "com.github.bumptech.glide:compose:${Versions.glideComposeVersion}"
 }

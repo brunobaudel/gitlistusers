@@ -92,8 +92,5 @@ dependencies {
     // Navigation
     implementation(Compose.navigationCompose)
 
-    implementation("com.github.bumptech.glide:compose:1.0.0-alpha.3")
-
-
-
+    implementation(Glide.glideCompose)
 }
