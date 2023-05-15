@@ -1,4 +1,4 @@
-# API Git - Descrição Técnica
+# Lista de usuários Git - Descrição Técnica
 
 Este projeto é uma aplicação que utiliza as APIs do Git para obter informações relacionadas a usuários, detalhes de usuários e repositórios. Além disso, oferece a funcionalidade de busca por nome de usuários. Abaixo, você encontrará detalhes sobre cada uma dessas funcionalidades:
 
