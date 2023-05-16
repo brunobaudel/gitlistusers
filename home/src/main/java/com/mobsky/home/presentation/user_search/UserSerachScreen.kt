@@ -13,6 +13,7 @@ import androidx.compose.runtime.remember
 import com.mobsky.home.domain.model.GitUser
 import com.mobsky.home.presentation.screen_sections.components.ScreenStateView
 import com.mobsky.home.presentation.screen_sections.components.SearchableTopBar
+import com.mobsky.home.presentation.screen_sections.components.SearchableTopBarState
 import com.mobsky.home.presentation.screen_sections.git_user_profile_header.UserDetailView
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -24,19 +25,24 @@ fun UserSearchScreen(
 ) {
 
     val uiState by viewModel.uiState.collectAsState()
-    val userNameRemember = remember { mutableStateOf("") }
-    val userName = userNameRemember.value
 
     Scaffold(
         topBar = {
             SearchableTopBar(
                 currentSearchText = "Buscar usuario",
-                onSearchDispatched = { searchText ->
-                    viewModel.getUserInfo(searchText)
+                onSearchDispatched = {
+                    viewModel.getUserInfo()
                 },
                 onSearchTextChanged = { searchText ->
-                    userNameRemember.value = searchText
+                    viewModel.userName.value = searchText
                 },
+                onSearchDeactivated = {
+                    viewModel.setSearchableTopBarState(SearchableTopBarState.Close)
+                },
+                onSearchIconClicked = {
+                    viewModel.setSearchableTopBarState(SearchableTopBarState.Open(""))
+                },
+                searchableTopBarState = viewModel.searchableTopBarState
             )
         },
         content = { innerPadding ->
@@ -44,7 +50,7 @@ fun UserSearchScreen(
                 modifier = androidx.compose.ui.Modifier.padding(innerPadding)
             ) {
                 ScreenStateView(uiState,
-                    tryAgainCallBack = { viewModel.getUserInfo(userName) }
+                    tryAgainCallBack = { viewModel.getUserInfo() }
                 ) {
                     UserDetailView(user = uiState.user) {
                         onClickNavigation.invoke(it)
