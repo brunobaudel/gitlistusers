@@ -6,12 +6,9 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.AppBarDefaults
 import androidx.compose.material.ContentAlpha
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -24,7 +21,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,30 +32,37 @@ fun SearchableTopBar(
     onSearchTextChanged: ((String) -> Unit) = {},
     onSearchDeactivated: () -> Unit = {},
     onSearchDispatched: (String) -> Unit = {},
-    onSearchIconClicked: () -> Unit = {}
+    onSearchIconClicked: () -> Unit = {},
+    searchableTopBarState : SearchableTopBarState
 ) {
 
-    val isShowingSearchField = remember { mutableStateOf(false) }
+    when (searchableTopBarState) {
 
-    if (isShowingSearchField.value) {
-        SearchTopBar(
-            currentSearchText = "",
-            onSearchTextChanged = onSearchTextChanged,
-            onSearchDeactivated = {
-                onSearchDeactivated()
-                isShowingSearchField.value = false
-            },
-            onSearchDispatched = onSearchDispatched
-        )
-    } else {
-        HomeTopBar(
-            topBarNameId = currentSearchText,
-            onSearchIconClicked = {
-                onSearchIconClicked()
-                isShowingSearchField.value = true
-            }
-        )
+        is SearchableTopBarState.Open -> {
+            SearchTopBar(
+                currentSearchText = searchableTopBarState.openText,
+                onSearchTextChanged = onSearchTextChanged,
+                onSearchDeactivated = {
+                    onSearchDeactivated()
+                },
+                onSearchDispatched = onSearchDispatched
+            )
+        }
+
+        is SearchableTopBarState.Close -> {
+            HomeTopBar(
+                topBarNameId = currentSearchText,
+                onSearchIconClicked = {
+                    onSearchIconClicked()
+                }
+            )
+        }
     }
+}
+
+sealed class SearchableTopBarState {
+    class Open(val openText: String) : SearchableTopBarState()
+    object Close : SearchableTopBarState()
 }
 
 @Composable
@@ -94,14 +97,16 @@ fun SearchTopBar(
                 Text(
                     modifier = Modifier.alpha(ContentAlpha.medium),
                     text = "Digite aqui...",
-                    color = Color.White
+                    color = Color.Black
                 )
             },
             textStyle = TextStyle(fontSize = MaterialTheme.typography.bodyLarge.fontSize),
             singleLine = true,
-            leadingIcon = { SearchLeadingIcon{
-                onSearchDispatched(currentSearchRememberValue)
-            } },
+            leadingIcon = {
+                SearchLeadingIcon {
+                    onSearchDispatched(currentSearchRememberValue)
+                }
+            },
             trailingIcon = {
                 SearchTrailingIcon {
                     if (currentSearchRememberValue.isNotEmpty()) {
@@ -111,7 +116,11 @@ fun SearchTopBar(
                 }
             },
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-            keyboardActions = KeyboardActions(onSearch = { onSearchDispatched(currentSearchRememberValue) }),
+            keyboardActions = KeyboardActions(onSearch = {
+                onSearchDispatched(
+                    currentSearchRememberValue
+                )
+            }),
             colors = TextFieldDefaults.textFieldColors(
                 backgroundColor = Color.Transparent,
                 cursorColor = Color.Black.copy(alpha = ContentAlpha.medium)
@@ -146,33 +155,6 @@ fun SearchLeadingIcon(action: () -> Unit = {}) {
         modifier = Modifier.alpha(ContentAlpha.medium),
         onIconClickAction = action
     )
-}
-
-@Composable
-fun SearchTrailingIcon(action: () -> Unit = {}) {
-    DefaultIcon(
-        searchIcon = Icons.Default.Close,
-        contentDescription = "Deactivate Search Icon",
-        onIconClickAction = action
-    )
-}
-
-@Composable
-fun DefaultIcon(
-    modifier: Modifier = Modifier,
-    searchIcon: ImageVector = Icons.Default.Search,
-    contentDescription: String = "Magnifier Search Icon",
-    onIconClickAction: () -> Unit = {}
-) {
-    IconButton(
-        modifier = modifier,
-        onClick = onIconClickAction
-    ) {
-        Icon(
-            imageVector = searchIcon,
-            contentDescription = contentDescription,
-        )
-    }
 }
 
 @Composable

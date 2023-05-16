@@ -1,11 +1,12 @@
 package com.mobsky.home.presentation.user_search
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mobsky.home.data.repository.User
 import com.mobsky.home.domain.usecase.GetUserUseCase
+import com.mobsky.home.presentation.screen_sections.components.SearchableTopBarState
 import com.mobsky.home.presentation.util.TaskState
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -19,11 +20,22 @@ class UserSearchViewModel(
     private val _uiState = MutableStateFlow(UserSearchScreenState())
     val uiState: StateFlow<UserSearchScreenState> = _uiState.asStateFlow()
 
-    fun getUserInfo(userName: String? = null) {
+    val userName = mutableStateOf("")
+
+    private val _searchableTopBarState = mutableStateOf<SearchableTopBarState>(SearchableTopBarState.Close)
+    val searchableTopBarState: SearchableTopBarState
+        get() = _searchableTopBarState.value
+
+    fun setSearchableTopBarState(state: SearchableTopBarState) {
+        _searchableTopBarState.value = state
+    }
+
+    fun getUserInfo() {
         viewModelScope.launch {
             try {
                 updateScreenStateProgress()
-                val user = getUserUseCase.invoke(userName)
+                _searchableTopBarState.value = SearchableTopBarState.Open(userName.value)
+                val user = getUserUseCase.invoke(userName.value)
                 updateScreenStatSuccess(user)
             } catch (e: Exception) {
                 updateScreenStateError(e)
